@@ -1,0 +1,6 @@
+streamlit
+joblib
+streamlit-mic-recoder
+SpeechRecognition
+pyttsx3
+scikit-learn
