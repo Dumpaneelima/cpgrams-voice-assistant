@@ -1,7 +1,7 @@
 streamlit==1.51.0
 joblib
 pandas
-streamlit-mic-recoder
+streamlit-mic-recorder==0.0.8
 SpeechRecognition
 pyttsx3
 scikit-learn==1.8.0
