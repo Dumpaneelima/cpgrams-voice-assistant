@@ -3,8 +3,21 @@ import joblib
 from streamlit_mic_recorder import speech_to_text
 import speech_recognition as sr
 import base64
-import pyttsx3
+import json
 
+def speak_in_browser(response):
+    st.components.v1.html(
+        f"""
+        <script>
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance({json.dumps(response)});
+          utterance.lang = "en-IN";
+          window.speechSynthesis.speak(utterance);
+        </script>
+        """,
+        height=0,
+    )
+ 
 model=joblib.load("cpgrams_model.pkl")
 vectorizer=joblib.load("cpgrams_tfidf.pkl")
 label_encoder=joblib.load("cpgrams_label_encoder.pkl")
@@ -35,8 +48,7 @@ if st.button("Predict Category"):
       category=prediction[0]   
       st.success(f"Predicted Category: {category}")
 
-      engine=pyttsx3.init()
       response=f"Your complaint has been classified as {category}."
       st.write(response)
-      engine.say(response)
+      speak_in_browser(response)
       engine.runAndWait()  
