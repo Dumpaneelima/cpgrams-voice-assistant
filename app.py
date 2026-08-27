@@ -51,4 +51,3 @@ if st.button("Predict Category"):
       response=f"Your complaint has been classified as {category}."
       st.write(response)
       speak_in_browser(response)
-      engine.runAndWait()  
